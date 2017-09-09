@@ -1,0 +1,13 @@
+apply plugin: 'eclipse-wtp'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile project(':rest-apis')
+
+    compile(group: 'org.apache.cxf', name: 'cxf-rt-rs-client', version: '3.0.0')
+}
+

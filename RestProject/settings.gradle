@@ -1,0 +1,1 @@
+include 'rest-apis', 'rest-client', 'rest-war'

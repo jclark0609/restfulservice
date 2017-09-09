@@ -1,0 +1,26 @@
+
+subprojects {
+
+	apply plugin: 'eclipse-wtp'
+	apply plugin: 'java'
+	
+	repositories {
+	    mavenCentral()
+	}
+	
+	dependencies {	
+	    
+	    //Jackson Json
+	    compile(group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.6+')
+	    compile(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.6+')
+	    
+	    //Apache Commons
+	    compile(group: 'org.apache.commons', name: 'commons-lang3', version: '3.2.1')
+	    
+	    //Testing Stuff
+	    compile(group: 'junit', name: 'junit', version: '4.12')
+	    compile(group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.4')
+	    compile(group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4')
+	}
+
+}

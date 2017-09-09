@@ -1,0 +1,23 @@
+apply plugin: 'war'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile project(':rest-apis')
+
+    compile(group: 'org.springframework', name: 'spring-web', version: '4.3.10.RELEASE')
+	
+	// CXF
+	compile(group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxrs', version: '3.0.0')
+	compile(group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxws', version: '3.0.0')
+	compile(group: 'org.apache.cxf', name: 'cxf-rt-rs-client', version: '3.0.0')
+	
+}
+
+war {
+	version = ""
+	baseName = 'RestWarStuff'
+}

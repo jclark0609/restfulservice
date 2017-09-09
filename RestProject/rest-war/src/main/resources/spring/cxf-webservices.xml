@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	   xmlns:cxf="http://cxf.apache.org/core"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation=
+			"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			 http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+			 http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd"
+ 	   default-autowire="byName">
+ 	   
+	<!-- <import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
+	<context:annotation-config/>
+
+	<context:component-scan base-package="com.restful.stuff.ws"/>	
+ 
+	<cxf:bus>
+		<cxf:features>
+			<cxf:logging/>
+		</cxf:features>
+	</cxf:bus>
+
+	<bean id="jacksonJsonProvider" 
+		class="com.restful.stuff.ws.jackson.JacksonProviderFactory" 
+		factory-method="createJsonProvider"/>
+		
+	<jaxrs:server id="restfulExample" address="/">
+		<jaxrs:serviceBeans>
+			<!-- add your service bean or reference to that bean here -->
+			<ref bean="exampleService"/>
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="jacksonJsonProvider"/>
+			<bean class="com.restful.stuff.ws.util.RestGenericExceptionResponseMapper"/>
+			<bean class="com.restful.stuff.ws.util.RestRuntimeException"/>
+		</jaxrs:providers>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server>
+</beans>
